@@ -1,22 +1,24 @@
-"""Write the finished front page to the grader's output directory.
+#!/usr/bin/env python3
+"""Copy the pre-rendered front page to the grading output directory.
 
-The image is rendered in advance and shipped in this repository as
-``entry.png``. This program does nothing but copy that file, so the bytes
-it produces are identical on every run. Only the Python standard library
-is used, and no network access is needed.
+Standard library only. The grading sandbox has no Pillow and no
+fonts, so this program never re-renders: it copies entry.png byte
+for byte to $MAKEFUN_OUTPUT_DIR/entry.png (default /output).
 """
+
 import os
 import shutil
-from pathlib import Path
-
-REPO_DIR = Path(__file__).resolve().parent
-DEST_DIR = Path(os.environ.get("MAKEFUN_OUTPUT_DIR", "/output"))
+import sys
 
 
 def main():
-    DEST_DIR.mkdir(parents=True, exist_ok=True)
-    shutil.copyfile(REPO_DIR / "entry.png", DEST_DIR / "entry.png")
+    out_dir = os.environ.get("MAKEFUN_OUTPUT_DIR", "/output")
+    here = os.path.dirname(os.path.abspath(__file__))
+    src = os.path.join(here, "entry.png")
+    os.makedirs(out_dir, exist_ok=True)
+    shutil.copyfile(src, os.path.join(out_dir, "entry.png"))
+    return 0
 
 
 if __name__ == "__main__":
-    main()
+    sys.exit(main())

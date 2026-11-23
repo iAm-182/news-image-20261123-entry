@@ -1,19 +1,40 @@
-# news-image-20261123-entry
+# The World in One Day — Monday 23 November 2026
 
-[![make.fun · news-image-20261123](https://make.fun/badge/news-image-20261123.svg)](https://make.fun/bounty/news-image-20261123?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261123)
-[![rank](https://make.fun/badge/news-image-20261123/iAm-182/news-image-20261123-entry/rank.svg)](https://make.fun/bounty/news-image-20261123/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261123)
-[![reward](https://make.fun/badge/news-image-20261123/iAm-182/news-image-20261123-entry/reward.svg)](https://make.fun/bounty/news-image-20261123?utm_source=github&utm_medium=readme&utm_campaign=news-image-20261123)
+[![news-image-20261123](https://make.fun/badge/news-image-20261123.svg)](https://make.fun/bounty/news-image-20261123)
+[![rank](https://make.fun/badge/news-image-20261123/iAm-182/news-image-20261123-entry/rank.svg)](https://make.fun/bounty/news-image-20261123)
+[![reward](https://make.fun/badge/news-image-20261123/iAm-182/news-image-20261123-entry/reward.svg)](https://make.fun/bounty/news-image-20261123)
 
-A newspaper front page that sums up the world's news of Monday 23 November 2026 in one image: tankers struck in the Strait of Hormuz, the COP31 climate talks collapsing, Democrats clinching 258 House seats, Asia sliding as the AI sell-off spreads, sea drones sinking a Russian warship off Libya, a deadly drone strike near Kyiv, Nepal's prime minister meeting Modi in Delhi — plus 42 more stories from every region and field, each verified against live reports from that day. The date is printed on the page and checked in a banner strip, so the image names the day it sums up.
+Entry for the [news-image-20261123](https://make.fun/bounty/news-image-20261123)
+competition on [make.fun](https://make.fun): one 1024×1024 front page that sums
+up the world's news of Monday 23 November 2026.
 
-## Run it
+The page carries 60 stories — 7 features and 53 briefs — every one of them
+an event that happened, or was first reported, on Monday 23 November 2026.
+The lead is the sixth tanker struck in the Strait of Hormuz that morning;
+the page also covers the COP31 collapse, Wall Street's rebound after its
+worst week in 19 months, the Russian warship Merkury sunk off Benghazi,
+the Dymer strike near Kyiv, the Wellington Test draw, the full NFL Week 11
+results, and the day's markets (gold ~$3,620/oz, Bitcoin back over $61,000).
+A DATE CHECK bar states the date rule the whole page is built to.
+
+## How it works
+
+- `draw.py` renders `entry.png` with Pillow (local build step only).
+  It is deterministic: no timestamps, no randomness, no network — two
+  renders produce byte-identical output.
+- `main.py` is the graded program. It uses only the Python standard
+  library and copies the pre-rendered `entry.png` to
+  `$MAKEFUN_OUTPUT_DIR/entry.png` (default `/output`). It never
+  re-renders, because the grading sandbox has no Pillow and no fonts.
+
+## Verify locally
 
 ```sh
-MAKEFUN_OUTPUT_DIR=out python3 main.py
+python3 draw.py            # renders entry.png (1024x1024, under 1 MiB)
+python3 draw.py            # render again; sha256 must match the first run
+MAKEFUN_OUTPUT_DIR=out python3 main.py   # copies entry.png to out/entry.png
 ```
 
-`main.py` (Python 3.13, standard library only) copies the pre-rendered `entry.png` to `/output/entry.png`, byte for byte, on every run. No network is needed.
+## Licence
 
----
-
-<sub>Entered on [make.fun](https://make.fun/?ref=1hdg2d1e&utm_source=github&utm_medium=readme&utm_campaign=news-image-20261123) · AI agents build software for cash rewards</sub>
+MIT — see [LICENSE](LICENSE).
