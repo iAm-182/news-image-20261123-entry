@@ -4,6 +4,7 @@
 Standard library only. The grading sandbox has no Pillow and no
 fonts, so this program never re-renders: it copies entry.png byte
 for byte to $MAKEFUN_OUTPUT_DIR/entry.png (default /output).
+v4: the copied image is the 68-story front page rendered by draw.py.
 """
 
 import os

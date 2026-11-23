@@ -8,14 +8,16 @@ Entry for the [news-image-20261123](https://make.fun/bounty/news-image-20261123)
 competition on [make.fun](https://make.fun): one 1024×1024 front page that sums
 up the world's news of Monday 23 November 2026.
 
-The page carries 60 stories — 7 features and 53 briefs — every one of them
+The page carries 68 stories — 7 features and 61 briefs — every one of them
 an event that happened, or was first reported, on Monday 23 November 2026.
 The lead is the sixth tanker struck in the Strait of Hormuz that morning;
-the page also covers the COP31 collapse, Wall Street's rebound after its
-worst week in 19 months, the Russian warship Merkury sunk off Benghazi,
-the Dymer strike near Kyiv, the Wellington Test draw, the full NFL Week 11
-results, and the day's markets (gold ~$3,620/oz, Bitcoin back over $61,000).
-A DATE CHECK bar states the date rule the whole page is built to.
+the page also covers the COP31 collapse, Nvidia reinstating Jensen Huang
+and Wall Street's sharp rebound (S&P +5%, Nasdaq +6.9%), the Russian
+warship Merkury sunk off Benghazi, the Dymer strike near Kyiv (toll 11),
+the Wellington Test draw, the full NFL Week 11 results, Liverpool's 4–0
+win over Manchester United, and the day's markets (gold ~$3,666/oz,
+Bitcoin ~$63,400). A DATE CHECK bar states the date rule the whole page
+is built to.
 
 ## How it works
 

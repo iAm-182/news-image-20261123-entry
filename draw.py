@@ -1,9 +1,23 @@
 #!/usr/bin/env python3
-"""Render the front page for Monday 23 November 2026.
+"""Render the front page for Monday 23 November 2026 (v4).
 
 Reads nothing but the story lists below and writes entry.png
 (1024x1024, Pillow). Deterministic: no timestamps, no randomness,
 no network. The graded program (main.py) only copies this PNG.
+
+v4 vs v3 (60 stories): 68 stories. Fresh close-of-day facts replace
+v3's morning numbers (Nvidia reinstates Huang, Wall Street closes
+up sharply, gold ~$3,666, Bitcoin ~$63,400), the Dymer toll is
+corrected 10 -> 11, the Merkury feature now names Zelenskyy's claim
+(seven sea drones, cargo ship Angara hit, Ka-27 destroyed), COP31
+gets its real ending (EU pulls the plug, longest summit on record),
+the NFL brief is fixed (no more 'Bills 9-1') and expanded to full
+Week 11 finals, and 20 new Monday-verified briefs are added
+(Liverpool 4-0 Man Utd, FIFA 2031/2035 hosts, Trump on Iran and
+credit-card caps, TCU, Bayer $7.25bn, Kryvyi Rih, Kospi close...).
+Dropped as stale or wrong-dated: the Chapo Isidro capture (20 Nov),
+the Cyrus wedding (Sat 21 Nov), the UN killer-robot talks (21 Nov),
+the Skubal deal (agreed Sun night), and three unverified v3 briefs.
 """
 
 import os
@@ -86,28 +100,30 @@ FEATURES = [
     # (kicker, headline, deck, box)
     ("LEAD \u2022 THE GULF",
      "TANKERS STRUCK IN THE STRAIT OF HORMUZ",
-     "A sixth tanker was hit on Monday \u2014 the seventh since 16 November "
-     "\u2014 and Iran says it downed a 20th US drone. Attacks on shipping "
-     "are at their highest since the war began.",
+     "A sixth tanker was hit on Monday \u2014 seven struck since "
+     "16 November, monitors say \u2014 as attacks on shipping reach "
+     "their highest level since the war began.",
      (16, 168, 628, 128)),
     ("CLIMATE \u2022 AFTER COP31",
-     "Talks collapse; PM blames geopolitics",
-     "The UN chief is \u2018disappointed\u2019 as COP31 ends with no "
-     "fossil-fuel deal.",
+     "COP31 COLLAPSES WITH NO DEAL",
+     "The EU pulls the plug on a pact that never mentions fossil "
+     "fuels; the UN chief is \u2018profoundly\u2019 disappointed. The "
+     "longest climate summit on record.",
      (656, 168, 352, 128)),
-    ("MARKETS",
-     "WALL ST REBOUNDS; ASIA SLIDES",
-     "S&P futures rise 2% after Friday\u2019s 3.7% rout; Kospi fell, then "
-     "steadied. Tokyo shut.",
+    ("NVIDIA \u2022 MARKETS",
+     "HUANG IS BACK \u2014 WALL ST SOARS",
+     "Nvidia reinstates Jensen Huang as CEO; shares jump ~31%. "
+     "S&P +5%, Nasdaq +6.9%, Dow +3.1% after Friday\u2019s rout.",
      (16, 304, 322, 118)),
     ("LIBYA",
      "SEA DRONES SINK RUSSIAN WARSHIP",
-     "The corvette Merkury sank at Benghazi; 10 people were hurt.",
+     "Zelenskyy claims the sinking: seven drones sank the corvette "
+     "Merkury and hit the cargo ship Angara; 10 hurt.",
      (350, 304, 322, 118)),
     ("UKRAINE",
      "DRONE HITS FLATS NEAR KYIV",
-     "At least 10 dead in Dymer; a boy, 7, was pulled alive after "
-     "14 hours in the rubble.",
+     "Death toll in Dymer rises to 11; a boy, 7, was pulled alive "
+     "after 14 hours, a woman, 79, after 22. A day of mourning.",
      (684, 304, 324, 118)),
     ("INDIA",
      "NEPAL PM MEETS MODI IN DELHI",
@@ -115,8 +131,9 @@ FEATURES = [
      "train flagged off.",
      (16, 430, 628, 100)),
     ("MONEY",
-     "Gold ~$3,620/oz, Bitcoin over $61,000",
-     "Gold rebounds 2% after last week\u2019s slide; Brent holds near $90.",
+     "Gold ~$3,666/oz, Bitcoin ~$63,400",
+     "Gold climbs ~$50 on the Nvidia rally; Bitcoin jumps too. "
+     "Brent holds near $90.",
      (656, 430, 352, 100)),
 ]
 
@@ -124,57 +141,65 @@ FEATURES = [
 # on Monday 23 November 2026.
 BRIEFS = [
     ("AMERICA:", "Democrats clinch 258 House seats, largest majority since 1992."),
-    ("MEXICO:", "US Justice Dept confirms capture of FBI most-wanted \u2018Chapo Isidro\u2019."),
+    ("NFL:", "Week 11 \u2014 49ers rout Vikings 35\u201310 in Mexico City."),
+    ("NFL:", "Week 11 \u2014 Lions 31-21, Chiefs 34-7, Cowboys 51-30, Bills 26-9."),
+    ("NFL:", "Week 11 \u2014 Giants 23-18, Panthers 35-33, Jets 27-24."),
+    ("LIVERPOOL:", "Liverpool thrash 10-man Man Utd 4\u20130; Pochettino\u2019s first match."),
+    ("FIFA:", "US-led bid wins 2031 Women\u2019s World Cup; UK gets 2035."),
     ("CRICKET:", "Mitchell and Phillips bat out 120 overs as NZ hold India to a draw."),
-    ("FBI:", "Investigating an apparent breach of the national crime database."),
-    ("S. SUDAN:", "24 civilians killed in fresh violence, officials say."),
-    ("BRAZIL:", "Ex-leader Bolsonaro is \u2018stable\u2019 in intensive care."),
-    ("NVIDIA:", "SEC accounting probe; shares fell ~14% on Friday."),
-    ("EBOLA:", "WHO chief pleads for peace in the Ebola-hit DR Congo region."),
     ("CHESS:", "Gukesh defends his world title vs Sindarov; first game Tuesday."),
-    ("BASEBALL:", "Skubal agrees a 9-year, $450m deal with the Mets."),
-    ("DENMARK:", "PM calls Hamas supporters an \u2018enemy within\u2019 threatening democracy."),
+    ("NHL:", "Canadiens land Dylan Larkin from the Red Wings in a blockbuster trade."),
+    ("TRUMP:", "\u2018Inclined\u2019 to resume war with Iran if no deal is reached by New Year."),
+    ("CARDS:", "Trump backs a 10% credit-card rate cap."),
+    ("TRUMP:", "Defends calling Putin a friend; warns firms moving data centres out."),
+    ("U.S.-IRAN:", "Hawks urge Trump to strike Iran again; Trump says no rush."),
+    ("JEFFRIES:", "Previews Democrats\u2019 five opening moves after the House win."),
+    ("DEBATES:", "Democrats plan 12 debates for the 2028 primary, the first in June."),
+    ("FBI:", "Investigating an apparent breach of the national crime database."),
+    ("ICE:", "Father and daughter detained by ICE at Seattle airport."),
+    ("IOWA:", "Army to detonate bomb chemicals in Iowa under emergency rules."),
+    ("DELTA:", "Weight-and-balance system restored after 1,600+ flights delayed."),
+    ("BAYER:", "Judge approves a $7.25bn Bayer payout over Roundup cancer claims."),
+    ("NVIDIA:", "Board reinstates Jensen Huang as CEO; shares soar ~31%."),
+    ("COREWEAVE:", "Shares jump 33% as the AI trade roars back."),
+    ("KOSPI:", "Kospi ends down 3.3%; Samsung and SK Hynix slide."),
     ("S. KOREA:", "Exports pass $1 trillion for the first time, customs data show."),
     ("TAIWAN:", "Regulator tightens short-selling; export orders rise for 21st month."),
+    ("MARKETS:", "Compass Group to move its main listing to New York."),
+    ("CHINA:", "Threatens retaliation after the US restricts Chinese telecom firms."),
+    ("CHINA:", "Beijing and Washington agree an AI discussion mechanism."),
+    ("KRYVYI RIH:", "Russian strikes kill 11 in Zelenskyy\u2019s home city."),
+    ("KYIV REGION:", "Russian strikes kill 15 across the Kyiv region."),
+    ("WEST BANK:", "PM-elect Eisenkot calls settler arson \u2018Jewish terrorism\u2019."),
+    ("ISRAEL:", "Netanyahu\u2013Eisenkot government talks end with no deal."),
+    ("NATO:", "North Atlantic Council meets in Brussels over the missiles in Poland."),
+    ("POLAND:", "Prosecutors confirm three Russian cruise missiles hit on Friday."),
+    ("N. KOREA:", "Kim says the country seeks security, not supremacy."),
+    ("S. SUDAN:", "24 civilians killed in fresh violence, officials say."),
+    ("SUDAN:", "Drone strikes hit Khartoum; a UN facility is damaged, 3 killed."),
+    ("NIGERIA:", "35 Fulanis killed in revenge attacks, officials say."),
+    ("MYANMAR:", "Army-backed government calls ASEAN decision \u2018unfair\u2019."),
+    ("ROHINGYA:", "Myanmar, China object to ICJ ruling on Rohingya genocide."),
+    ("EBOLA:", "WHO chief pleads for peace in the Ebola-hit DR Congo region."),
+    ("WHO:", "WHO chief visits Cuba as its health system breaks down."),
+    ("BRAZIL:", "Ex-leader Bolsonaro is \u2018stable\u2019 in intensive care."),
+    ("DENMARK:", "PM calls Hamas supporters an \u2018enemy within\u2019."),
     ("ISTANBUL:", "Thousands rally against a media takeover."),
     ("S. KOREA:", "Education minister quits over an AI exam-cheating scandal."),
     ("INDONESIA:", "24 body bags recovered from the Cikande candy-factory fire."),
-    ("NFL:", "Week 11 \u2014 49ers rout Vikings 35\u201310 in Mexico City; Giants hold off Jaguars 23\u201318; Bills 9\u20131."),
-    ("SUDAN:", "Drone strikes hit Khartoum; a UN facility is damaged, 3 killed."),
-    ("MYANMAR:", "Army-backed government calls ASEAN decision \u2018unfair\u2019."),
-    ("NIGERIA:", "35 Fulanis killed in revenge attacks, officials say."),
-    ("TRUMP:", "Defends calling Putin a friend; warns firms moving data centres out."),
-    ("GULF:", "Saudi coalition intercepts a Houthi missile; Iran strike wounds two."),
-    ("LAHORE:", "Again the world\u2019s most polluted major city, AQI 538."),
-    ("BRITAIN:", "Government to argue for greater public control of utilities."),
-    ("CHINA:", "Beijing and Washington agree an AI discussion mechanism."),
-    ("MANCHESTER:", "12,000 evacuated from Co-op Live after a suspect substance at a concert."),
-    ("U.S.-IRAN:", "Hawks urge Trump to strike Iran again; Trump says no rush."),
-    ("BURNHAM:", "Tells MPs an EU deal could make the next decade \u2018much better\u2019."),
-    ("UNITED NATIONS:", "States agree to keep negotiating limits on lethal AI weapons."),
-    ("JAPAN:", "Rebuilt Shuri Castle hall reopens, seven years after the 2019 fire."),
-    ("DELTA:", "Weight-and-balance system restored after 1,600+ flights delayed."),
-    ("WEST BANK:", "Settlers torch 12 Palestinian vehicles near Ramallah."),
-    ("ISRAEL:", "Netanyahu\u2013Eisenkot talks on forming a government end with no deal."),
-    ("POLAND:", "Prosecutors confirm three Russian cruise missiles hit on Friday."),
-    ("N. KOREA:", "Kim says the country seeks security, not supremacy."),
-    ("INDIA:", "Modi opens an AI centre at IIT Patna; Shah launches Rs 4,000cr push."),
-    ("NATO:", "North Atlantic Council meets in Brussels over the missiles in Poland."),
-    ("AI:", "OpenAI scientist urges limits tied to a model\u2019s intelligence."),
-    ("MARKETS:", "Compass Group to shift its primary listing from London to New York."),
-    ("NHL:", "Canadiens land Dylan Larkin from the Red Wings in a blockbuster trade."),
-    ("MONGOLIA:", "Parliament approves the president\u2019s resignation."),
-    ("FURY:", "Tyson Fury reveals a schizophrenia diagnosis in a new documentary."),
+    ("ITALY:", "A national strike in Italy as European protests spread."),
+    ("THAILAND:", "Thai court upholds a royal-defamation conviction, cuts term to 3 years."),
+    ("TCU:", "TCU fires Sonny Dykes, four years after a title-game run."),
     ("JACKSON:", "Hall of Fame broadcaster Tom Jackson dies at 75."),
-    ("PURDUE:", "Professor and two daughters found dead in an apparent murder-suicide."),
+    ("INDIA:", "Modi opens an AI centre at IIT Patna; Shah launches Rs 4,000cr push."),
+    ("BANGLADESH:", "Garment sector lost $428m in 18 days of unrest."),
+    ("CALIFORNIA:", "Heavy deluge floods parts of the state."),
+    ("BRITAIN:", "Government to argue for greater public control of utilities."),
+    ("MANCHESTER:", "12,000 evacuated from Co-op Live in a substance scare."),
     ("GERMANY:", "Carbon monoxide leak sickens 56 at Mass in a chapel."),
-    ("CYRUS:", "Miley Cyrus weds drummer Maxx Morando in California."),
-    ("CHINA:", "Threatens retaliation after the US restricts Chinese telecom firms."),
+    ("JAPAN:", "Rebuilt Shuri Castle hall reopens, seven years after the 2019 fire."),
     ("IRAN:", "To ration electricity as fuel shortages and war damage strain supply."),
-    ("CALIFORNIA:", "Deluge floods parts of the state; San Francisco urges residents to stock up."),
-    ("BANGLADESH:", "Garment sector lost $428m in 18 days of unrest, a survey finds."),
-    ("ICE:", "Father and daughter detained by ICE at Seattle airport."),
-    ("JEFFRIES:", "Previews Democrats\u2019 five opening moves after the House win."),
+    ("GULF:", "Saudi coalition intercepts a Houthi missile; Iran strike wounds two."),
     ("SAILOR:", "Jordanian sailor missing after a tanker attack; the search goes on."),
 ]
 
@@ -216,8 +241,8 @@ def draw_feature(draw, kicker, headline, deck, box, head_size, deck_size):
 def briefs_layout(draw, size, col_w, gap, avail_h):
     """Lay the briefs into 3 columns at the given font size.
 
-    Returns (fits, columns) where columns is a list of per-column
-    line-lists, each line a list of (word, is_label) pairs.
+    Returns (fits, columns, lead) where columns is a list of
+    per-column line-lists, each line a list of (word, is_label) pairs.
     """
     bold_f = font(SERIF_BOLD, size)
     reg_f = font(SERIF, size)
@@ -230,7 +255,7 @@ def briefs_layout(draw, size, col_w, gap, avail_h):
             lines = wrap_mixed(draw, label, text, bold_f, reg_f, col_w)
             col_lines.append(lines)
         cols.append(col_lines)
-    lead = size + 4.5
+    lead = size + 4.0
     heights = []
     for col_lines in cols:
         total = 0.0
@@ -286,13 +311,13 @@ def render(path):
     top, bottom = 578, 988
     avail = bottom - top
     chosen = None
-    for size in [13.5, 13, 12.5, 12, 11.5, 11, 10.5]:
-        fits, cols, lead = briefs_layout(d, size, col_w, 4, avail)
+    for size in [13.5, 13, 12.5, 12, 11.5, 11, 10.5, 10]:
+        fits, cols, lead = briefs_layout(d, size, col_w, 2, avail)
         if fits:
             chosen = (size, cols, lead)
             break
     if chosen is None:
-        raise SystemExit("briefs do not fit even at 10.5pt")
+        raise SystemExit("briefs do not fit even at 10pt")
     size, cols, lead = chosen
     bold_f = font(SERIF_BOLD, size)
     reg_f = font(SERIF, size)
@@ -303,7 +328,7 @@ def render(path):
             for ln in lines:
                 draw_mixed_line(d, x, y, ln, bold_f, reg_f)
                 y += lead
-            y += 4
+            y += 2
 
     # Footer.
     d.rectangle([16, 994, W - 16, 995], fill=RULE)
